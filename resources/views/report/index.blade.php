@@ -4,33 +4,33 @@
         <div class="container">
             <div class="row">
                 <div class="offset-md-4 col-md-4">
-                    <h2 class="admin-heading text-center">Báo Cáo</h2>
+                    <h2 class="admin-heading text-center">📊 Báo Cáo</h2>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-4">
-                    <div class="card" style="width: 18rem;">
+                    <div class="card">
                         <div class="card-body text-center">
-                            <a href="{{ route('reports.date_wise') }}" class="card-link">
-                                <h5 class="card-title mb-0">Báo cáo theo ngày</h5>
+                            <a href="{{ route('reports.date_wise') }}" class="card-link date-wise">
+                                <h5 class="card-title mb-0">📅 Báo Cáo Theo Ngày</h5>
                             </a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card" style="width: 18rem;">
+                    <div class="card">
                         <div class="card-body text-center">
-                            <a href="{{ route('reports.month_wise') }}" class="card-link">
-                                <h5 class="card-title mb-0">Báo cáo theo tháng</h5>
+                            <a href="{{ route('reports.month_wise') }}" class="card-link month-wise">
+                                <h5 class="card-title mb-0">📆 Báo Cáo Theo Tháng</h5>
                             </a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card" style="width: 18rem;">
+                    <div class="card">
                         <div class="card-body text-center">
-                            <a href="{{ route('reports.not_returned') }}" class="card-link">
-                                <h5 class="card-title mb-0">Not Returned</h5>
+                            <a href="{{ route('reports.not_returned') }}" class="card-link not-returned">
+                                <h5 class="card-title mb-0">🚨 Báo Cáo Sách Chưa Trả</h5>
                             </a>
                         </div>
                     </div>
@@ -40,7 +40,7 @@
     </div>
 
 <style>
-    /* Thiết lập chung */
+/* Thiết lập chung */
 #admin-content {
     padding: 60px 0;
     background-color: #f8f9fa;

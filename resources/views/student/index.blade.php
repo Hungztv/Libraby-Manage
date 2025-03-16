@@ -4,10 +4,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <h2 class="admin-heading">All Students</h2>
+                    <h2 class="admin-heading">Danh Sách Sinh Viên</h2>
                 </div>
                 <div class="offset-md-6 col-md-2">
-                    <a class="add-new" href="{{ route('student.create') }}">Add Student</a>
+                    <a class="add-new" href="{{ route('student.create') }}">Thêm Sinh Viên</a>
                 </div>
             </div>
             <div class="row">
@@ -16,15 +16,16 @@
                     <table class="content-table">
                         <thead>
                             <th>S.No</th>
-                            <th>Student Name</th>
-                            <th>Gender</th>
+                            <th>Tên</th>
+                            <th>Giới Tính</th>
                             <th>Phone</th>
                             <th>Email</th>
-                            <th>View</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
+                            <th>Xem</th>
+                            <th>Sửa</th>
+                            <th>Xóa</th>
                         </thead>
                         <tbody>
+                    
                             @forelse ($students as $student)
                                 <tr>
                                     <td class="id">{{ $student->id }}</td>
@@ -34,15 +35,15 @@
                                     <td>{{ $student->email }}</td>
                                     <td class="view">
                                         <button data-sid='{{ $student->id }}>'
-                                            class="btn btn-primary view-btn">View</button>
+                                            class="btn btn-primary view-btn">Xem</button>
                                     </td>
                                     <td class="edit">
-                                        <a href="{{ route('student.edit', $student) }}>" class="btn btn-success">Edit</a>
+                                        <a href="{{ route('student.edit', $student) }}>" class="btn btn-success">Sửa</a>
                                     </td>
                                     <td class="delete">
                                         <form action="{{ route('student.destroy', $student->id) }}" method="post"
                                             class="form-hidden">
-                                            <button class="btn btn-danger delete-student">Delete</button>
+                                            <button class="btn btn-danger delete-student">Xóa</button>
                                             @csrf
                                         </form>
                                     </td>
@@ -77,7 +78,7 @@
                 type: "get",
                 success: function(student) {
                     console.log(student);
-                    form ="<tr><td>Student Name :</td><td><b>"+student['name']+"</b></td></tr><tr><td>Address :</td><td><b>"+student['address']+"</b></td></tr><tr><td>Gender :</td><td><b>"+ student['gender']+ "</b></td></tr><tr><td>Class :</td><td><b>"+ student['class']+ "</b></td></tr><tr><td>Age :</td><td><b>"+ student['age']+ "</b></td></tr><tr><td>Phone :</td><td><b>"+ student['phone']+ "</b></td></tr><tr><td>Email :</td><td><b>"+ student['email']+ "</b></td></tr>";
+                    form ="<tr><td>Họ Tên :</td><td><b>"+student['name']+"</b></td></tr><tr><td>Địa Chỉ :</td><td><b>"+student['address']+"</b></td></tr><tr><td>Giới Tính :</td><td><b>"+ student['gender']+ "</b></td></tr><tr><td>Lớp :</td><td><b>"+ student['class']+ "</b></td></tr><tr><td>Tuổi :</td><td><b>"+ student['age']+ "</b></td></tr><tr><td>SĐT :</td><td><b>"+ student['phone']+ "</b></td></tr><tr><td>Email :</td><td><b>"+ student['email']+ "</b></td></tr>";
           console.log(form);
 
                     $("#modal-form table").html(form);

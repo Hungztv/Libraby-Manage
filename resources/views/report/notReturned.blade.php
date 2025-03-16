@@ -4,7 +4,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 offset-md-2">
-                    <h2 class="admin-heading text-center">Not Returned Books</h2>
+                    <h2 class="admin-heading text-center">📚 Danh Sách Sách Chưa Trả</h2>
                 </div>
             </div>
             @if ($books)
@@ -13,41 +13,41 @@
                         <div class="table-responsive">
                             <table class="content-table">
                                 <thead>
-                                    <th>S.No</th>
-                                    <th>Student Name</th>
-                                    <th>Book Name</th>
-                                    <th>Phone</th>
-                                    <th>Email</th>
-                                    <th>Issue Date</th>
-                                    <th>Return Date</th>
-                                    <th>Over Days</th>
+                                    <th>#</th>
+                                    <th>🎓 Tên Sinh Viên</th>
+                                    <th>📖 Tên Sách</th>
+                                    <th>📞 Số Điện Thoại</th>
+                                    <th>📧 Email</th>
+                                    <th>📅 Ngày Mượn</th>
+                                    <th>📅 Ngày Phải Trả</th>
+                                    <th>⚠️ Quá Hạn</th>
                                 </thead>
                                 <tbody>
                                     @forelse ($books as $book)
                                         <tr class="{{ (date('Y-m-d') > $book->return_date->format('Y-m-d')) ? 'overdue-row' : '' }}">
-                                            <td>{{ $book->id }}</td>
+                                            <td>{{ $loop->iteration }}</td>
                                             <td>{{ $book->student->name }}</td>
                                             <td>{{ $book->book->name }}</td>
                                             <td>{{ $book->student->phone }}</td>
                                             <td>{{ $book->student->email }}</td>
-                                            <td>{{ $book->issue_date->format('d M, Y') }}</td>
-                                            <td>{{ $book->return_date->format('d M, Y') }}</td>
+                                            <td>{{ $book->issue_date->format('d/m/Y') }}</td>
+                                            <td>{{ $book->return_date->format('d/m/Y') }}</td>
                                             <td class="overdue-days">
                                                 @php 
-                                                $date1 = date_create(date('Y-m-d'));
-                                                $date2 = date_create($book->return_date->format('d-m-Y'));
-                                                if($date1 > $date2){
-                                                  $diff = date_diff($date1,$date2);
-                                                  echo $days = $diff->format('%a days');
-                                                }else{
-                                                  echo '0 days';
-                                                } 
+                                                    $date1 = date_create(date('Y-m-d'));
+                                                    $date2 = date_create($book->return_date->format('Y-m-d'));
+                                                    if($date1 > $date2){
+                                                        $diff = date_diff($date1, $date2);
+                                                        echo $days = $diff->format('%a ngày');
+                                                    } else {
+                                                        echo '0 ngày';
+                                                    } 
                                                 @endphp
                                             </td>
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="10">No Record Found!</td>
+                                            <td colspan="8" class="text-center">🚫 Không có dữ liệu!</td>
                                         </tr>
                                     @endforelse
                                 </tbody>
@@ -60,7 +60,7 @@
     </div>
 
 <style>
-/* General Settings */
+/* Cài đặt chung */
 #admin-content {
     padding: 60px 0;
     background-color: #f8f9fa;
@@ -68,11 +68,7 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.container {
-    max-width: 1280px;
-}
-
-/* Page Title */
+/* Tiêu đề trang */
 .admin-heading {
     color: #2c3e50;
     font-weight: 600;
@@ -95,7 +91,7 @@
     border-radius: 2px;
 }
 
-/* Enhanced Data Table */
+/* Bảng dữ liệu */
 .table-responsive {
     border-radius: 12px;
     overflow: hidden;
@@ -135,11 +131,7 @@
     transition: all 0.2s ease;
 }
 
-.content-table tbody tr:last-child td {
-    border-bottom: none;
-}
-
-/* Special styling for overdue books */
+/* Dòng cảnh báo quá hạn */
 .overdue-row {
     background-color: #fff9f9 !important;
 }
@@ -150,33 +142,23 @@
 
 .overdue-row td {
     color: #e74c3c;
-}
-
-.overdue-days {
     font-weight: 600;
-    position: relative;
 }
 
-/* Special style for days column */
-.content-table td.overdue-days:not(:contains('0 days')) {
-    color: #e74c3c;
-    font-weight: 700;
+/* Dòng thay thế */
+.content-table tbody tr:nth-child(even) {
+    background-color: #fcfcfc;
 }
 
-/* Row hover effects */
+/* Hiệu ứng hover */
 .content-table tbody tr:hover {
     background-color: #f8f9fa;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
     transform: translateY(-1px);
 }
 
-/* Alternate row styling */
-.content-table tbody tr:nth-child(even) {
-    background-color: #fcfcfc;
-}
-
-/* No Data Message */
-.content-table td[colspan="10"] {
+/* Hiển thị khi không có dữ liệu */
+.content-table td[colspan="8"] {
     text-align: center;
     padding: 40px 15px;
     color: #7f8c8d;
@@ -185,7 +167,7 @@
     background-color: #f9f9f9;
 }
 
-/* Responsive Design */
+/* Responsive */
 @media (max-width: 1200px) {
     .container {
         max-width: 95%;
@@ -214,35 +196,6 @@
         padding: 14px 12px;
         font-size: 14px;
     }
-}
-
-/* Animation for table loading */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.table-responsive {
-    animation: fadeIn 0.5s ease-out forwards;
-}
-
-/* Custom scrollbar for table overflow */
-.table-responsive::-webkit-scrollbar {
-    height: 8px;
-}
-
-.table-responsive::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 10px;
-}
-
-.table-responsive::-webkit-scrollbar-thumb {
-    background: #c0392b;
-    border-radius: 10px;
-}
-
-.table-responsive::-webkit-scrollbar-thumb:hover {
-    background: #e74c3c;
 }
 </style>
 @endsection
