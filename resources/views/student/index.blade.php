@@ -109,4 +109,290 @@
             });
         });
     </script>
+<style>
+    /* CSS chung cho trang admin */
+#admin-content {
+    padding: 40px 0;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+}
+
+/* Tiêu đề trang */
+.admin-heading {
+    font-weight: 600;
+    color: #212529;
+    position: relative;
+    padding-bottom: 12px;
+    margin-bottom: 0;
+    font-size: 24px;
+}
+
+.admin-heading:after {
+    content: '';
+    position: absolute;
+    width: 50px;
+    height: 2px;
+    background-color: #dc3545;
+    bottom: 0;
+    left: 0;
+}
+
+/* Nút Thêm mới */
+.add-new {
+    display: inline-block;
+    background-color: #dc3545;
+    color: #fff;
+    border-radius: 4px;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(220, 53, 69, 0.2);
+    margin-top: 5px;
+}
+
+.add-new:hover {
+    background-color: #c82333;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Bảng danh sách */
+.content-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 25px 0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.content-table thead th {
+    background-color: #343a40;
+    color: #ffffff;
+    font-weight: 500;
+    padding: 15px;
+    text-align: left;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+}
+
+.content-table tbody td {
+    padding: 14px 15px;
+    border-bottom: 1px solid #f2f2f2;
+    font-size: 14px;
+    color: #212529;
+    vertical-align: middle;
+}
+
+.content-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.content-table tbody tr {
+    background-color: #ffffff;
+    transition: all 0.2s ease;
+}
+
+.content-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.content-table tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.content-table tbody tr:nth-child(even):hover {
+    background-color: #f1f1f1;
+}
+
+/* Nút trong bảng */
+.btn {
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 6px 12px;
+    transition: all 0.2s;
+    border: none;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 123, 255, 0.2);
+}
+
+.btn-primary:hover {
+    background-color: #0069d9;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 6px rgba(0, 123, 255, 0.3);
+}
+
+.btn-success {
+    background-color: #28a745;
+    color: white;
+    box-shadow: 0 2px 4px rgba(40, 167, 69, 0.2);
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 6px rgba(40, 167, 69, 0.3);
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+    box-shadow: 0 2px 4px rgba(220, 53, 69, 0.2);
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 6px rgba(220, 53, 69, 0.3);
+}
+
+/* Phân trang */
+.pagination {
+    margin: 20px 0;
+    justify-content: center;
+}
+
+.page-item:first-child .page-link {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+.page-item:last-child .page-link {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.page-link {
+    color: #dc3545;
+    border: 1px solid #dee2e6;
+    padding: 8px 16px;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.page-item.active .page-link {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: white;
+}
+
+.page-link:hover {
+    background-color: #f8f9fa;
+    border-color: #dee2e6;
+    color: #c82333;
+}
+
+/* Modal */
+#modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+#modal-form {
+    background-color: white;
+    padding: 30px;
+    width: 50%;
+    max-width: 500px;
+    border-radius: 8px;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    margin: 10% auto;
+}
+
+#modal-form table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#modal-form table tr {
+    border-bottom: 1px solid #f2f2f2;
+}
+
+#modal-form table tr:last-child {
+    border-bottom: none;
+}
+
+#modal-form table td {
+    padding: 12px 0;
+    color: #212529;
+}
+
+#modal-form table td:first-child {
+    font-weight: 500;
+    width: 35%;
+    color: #495057;
+}
+
+#close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: #dc3545;
+    color: white;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    transition: all 0.2s ease;
+}
+
+#close-btn:hover {
+    background: #c82333;
+    transform: rotate(90deg);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .admin-heading {
+        font-size: 20px;
+    }
+    
+    .add-new {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+    
+    .content-table thead th {
+        padding: 12px 10px;
+        font-size: 13px;
+    }
+    
+    .content-table tbody td {
+        padding: 12px 10px;
+        font-size: 13px;
+    }
+    
+    .btn {
+        padding: 4px 8px;
+        font-size: 12px;
+    }
+    
+    #modal-form {
+        width: 90%;
+        padding: 20px;
+    }
+}
+</style>
 @endsection

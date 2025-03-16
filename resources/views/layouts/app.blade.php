@@ -11,6 +11,83 @@
     <!-- Bootstrap & Custom CSS -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    
+    <!-- Thêm CSS cho ảnh nền và logo -->
+    <style>
+    /* Thiết lập chung cho toàn bộ menu */
+    #menubar {
+        background-color: #f8f9fa; /* Màu nền nhẹ */
+        border-bottom: 1px solid #dee2e6; /* Đường viền dưới nhẹ */
+        padding: 0.5rem 0; /* Khoảng cách đệm trên và dưới */
+    }
+
+    /* Căn chỉnh các mục menu */
+    #menubar .menu {
+        justify-content: flex-start; /* Đẩy các mục menu về bên trái, bạn có thể dùng flex-end để sang phải */
+        list-style: none; /* Loại bỏ dấu đầu dòng mặc định của danh sách */
+        padding: 0; /* Loại bỏ khoảng đệm mặc định của danh sách */
+        margin: 0; /* Loại bỏ lề mặc định của danh sách */
+    }
+
+    /* Định dạng cho từng mục menu */
+    #menubar .menu li {
+        margin-right: 0.5rem; /* Khoảng cách giữa các mục */
+    }
+     /* bỏ gạch chân liên kết */
+        #menubar .menu li a {
+            text-decoration: none;
+        }
+    /* Định dạng cho liên kết trong mục menu */
+    #menubar .menu li a {
+        display: block; /* Hiển thị dạng khối để dễ tùy chỉnh kích thước */
+        padding: 0.5rem 1rem; /* Khoảng cách đệm trong liên kết */
+        color: #343a40; /* Màu chữ */
+        text-decoration: none; /* Loại bỏ gạch chân mặc định của liên kết */
+        border-radius: 0.25rem; /* Bo tròn góc */
+        transition: background-color 0.3s ease, color 0.3s ease; /* Hiệu ứng chuyển đổi mượt mà */
+    }
+
+    /* Hiệu ứng khi di chuột qua liên kết */
+    #menubar .menu li a:hover {
+        background-color: #007bff; /* Màu nền khi di chuột */
+        color: #fff; /* Màu chữ khi di chuột */
+    }
+        /* kiểu dáng icon */
+        #menubar .menu li a i {
+            margin-right: 5px;
+        }
+        body {
+            background-image: url("{{ asset('images/library-background.jpg') }}");
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+        
+        /* CSS cho logo - làm nhỏ hơn */
+        .logo img {
+            max-width: 100px;
+            height: auto; /* Giữ tỷ lệ khung hình */
+        }
+        
+        
+        /* Điều chỉnh menu sang bên phải */
+        /* #menubar .menu {
+            justify-content: flex-end !important;
+        } */
+        
+        /* Thêm kiểu dáng cho menu items */
+        /* #menubar .menu li a {
+            padding: 10px 15px;
+            margin-left: 5px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        #menubar .menu li a:hover {
+            background-color: #007bff;
+            color: white;
+        } */
+</style>
 </head>
 
 <body>
@@ -36,17 +113,11 @@
     </header>
     <!-- /HEADER -->
 
-    <!-- MENU BAR -->
+    <!-- MENU BAR - Đã chuyển sang phải -->
     <nav id="menubar">
         <div class="container">
-            <ul class="menu d-flex justify-content-center">
+            <ul class="menu d-flex">
                 <li><a href="{{ route('dashboard') }}">🏠 Trang chủ</a></li>
-                <li><a href="{{ route('authors') }}">📚 Tác giả</a></li>
-                <li><a href="{{ route('publishers') }}">🏢 Nhà xuất bản</a></li>
-                <li><a href="{{ route('categories') }}">📂 Thể loại</a></li>
-                <li><a href="{{ route('books') }}">📖 Sách</a></li>
-                <li><a href="{{ route('students') }}">🎓 Sinh viên</a></li>
-                <li><a href="{{ route('book_issued') }}">📌 Sách đã mượn</a></li>
                 <li><a href="{{ route('reports') }}">📊 Báo cáo</a></li>
                 <li><a href="{{ route('settings') }}">⚙️ Cài đặt</a></li>
             </ul>
